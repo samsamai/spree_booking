@@ -5,7 +5,6 @@ Spree::LineItem.class_eval do
 
   def amount
     a = price * adults + price * children * 0.55
-    # a.round(2)
   end
   
 end

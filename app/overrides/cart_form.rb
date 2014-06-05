@@ -13,3 +13,13 @@ Deface::Override.new(:virtual_path => 'spree/products/_cart_form',
 <% end %>
 eos
 )            
+
+# Deface::Override.new(:virtual_path => 'spree/products/_cart_form',
+#                      :name => "add_gon",
+#                      :insert_top => ":root",
+#                      :text => <<eos
+# <br>
+# eos
+# )            
+
+

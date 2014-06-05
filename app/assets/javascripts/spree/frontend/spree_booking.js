@@ -3,7 +3,18 @@
 //= require jquery.ui.datepicker
 
 $(function() {
-  $("#booking_date").datepicker({dateFormat: "dd-mm-yy"});
+  $("#booking_date").datepicker({
+    dateFormat: "dd-mm-yy",
+    beforeShowDay: function(date){
+        var string = jQuery.datepicker.formatDate('dd-mm-yy', date);
+        return [ gon.disabled_dates.indexOf(string) == -1 ]
+    },
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 1,
+    minDate:'0',
+    maxDate: '+2m'
+});
 
 
   $('input#adults').on('keyup change', function(e){
