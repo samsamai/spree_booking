@@ -1,5 +1,5 @@
 Deface::Override.new(:virtual_path => 'spree/products/_cart_form',
-                     :name => "add_debuging_info",
+                     :name => "add_booking_info",
                      :insert_top => "[data-hook='inside_product_cart_form']",
                      :text => <<eos
 <br>
