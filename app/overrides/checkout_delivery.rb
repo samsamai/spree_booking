@@ -30,7 +30,7 @@ Deface::Override.new(:virtual_path => 'spree/checkout/_delivery',
                              <td class="item-adults"><%= item.line_item.adults  %></td>
                              <td class="item-children"><%= item.line_item.children %></td>
                              <td class="item-under4"><%= item.line_item.under4  %></td>
-                             <td class="item-price"><%= item.line_item.money %></td>
+                             <td class="item-price"><%= item.line_item.single_money.to_html %></td>
                            </tr>
                          <% end %>
                        </tbody>
