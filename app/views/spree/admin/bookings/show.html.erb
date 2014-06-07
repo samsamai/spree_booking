@@ -7,7 +7,7 @@
     <%=h @date.strftime("%B %Y") %>
     <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m") %>
   </h2>
-<%= calendar_for(@bookings) do |t| %>
+<%= calendar_for(@bookings,:year => @date.year, :month => @date.month) do |t| %>
   <%= t.head('mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun') %>
   <%= t.day(:day_method => :booking_date) do |date, this_day_bookings| %>
     <%= date.day %><br>
