@@ -30,8 +30,8 @@ Spree::OrderContents.class_eval do
 
 
 
-    def add(variant, quantity = 1, currency = nil, shipment = nil, booking_date, adults, children, under4 )
-      line_item = add_to_line_item(variant, quantity, currency, shipment, booking_date, adults, children, under4 )
+    def add(variant, quantity = 1, currency = nil, shipment = nil, booking_date, adults, children, under4, bus )
+      line_item = add_to_line_item(variant, quantity, currency, shipment, booking_date, adults, children, under4, bus )
       reload_totals
       # PromotionHandler::Cart.new(order, line_item).activate
       # ItemAdjustments.new(line_item).update
@@ -41,7 +41,7 @@ Spree::OrderContents.class_eval do
 
     private
 
-    def add_to_line_item(variant, quantity, currency=nil, shipment=nil, booking_date, adults, children, under4 )
+    def add_to_line_item(variant, quantity, currency=nil, shipment=nil, booking_date, adults, children, under4, bus )
       line_item = grab_line_item_by_variant(variant)
 
       if line_item
@@ -68,7 +68,7 @@ Spree::OrderContents.class_eval do
       line_item.adults = adults.to_i
       line_item.children = children.to_i
       line_item.under4 = under4.to_i
-
+      line_item.bus = bus
 # Rails.logger.debug( "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" )
 # Rails.logger.debug( "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" )
 # Rails.logger.debug( "DEBUG: booking_date = #{booking_date}" )
