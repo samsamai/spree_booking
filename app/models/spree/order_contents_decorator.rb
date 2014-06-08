@@ -69,11 +69,6 @@ Spree::OrderContents.class_eval do
       line_item.children = children.to_i
       line_item.under4 = under4.to_i
       line_item.bus = bus
-# Rails.logger.debug( "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" )
-# Rails.logger.debug( "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" )
-# Rails.logger.debug( "DEBUG: booking_date = #{booking_date}" )
-# Rails.logger.debug( "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" )
-# Rails.logger.debug( "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" )
 
       line_item.save
       line_item

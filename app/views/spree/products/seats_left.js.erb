@@ -1,0 +1,4 @@
+$("#seats_left").val("<%= @available_bus.empty? ? 'No seats available.' : @available_bus[:seats_left ] %>");
+$("#bus_id").val("<%= @available_bus.empty? ? nil : @available_bus[:bus ].id %>");
+
+

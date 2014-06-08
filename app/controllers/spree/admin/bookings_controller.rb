@@ -5,7 +5,7 @@ module Spree
     class BookingsController < Spree::Admin::BaseController
 
       def show
-        @bookings = Spree::LineItem.all
+        @line_items = Spree::LineItem.all
         @date = params[:month] ? Date.strptime(params[:month], "%Y-%m") : Date.today
         @buses = Bus.all
       end

@@ -18,6 +18,10 @@ Deface::Override.new(:virtual_path => 'spree/orders/_line_item',
                        <td class="cart-item-total" data-hook="cart_item_total">
                          <%= line_item.display_amount.to_html unless line_item.quantity.nil? %>
                        </td>
+                       <td class="cart-item-quantity" data-hook="cart_item_quantity">
+                         <%= item_form.hidden_field :quantity, :min => 0, :class => "line_item_quantity", :size => 5 %>
+                       </td>
+
                      
 eos
 )

@@ -3,6 +3,8 @@
 //= require jquery.ui.datepicker
 
 $(function() {
+
+
   $("#booking_date").datepicker({
     dateFormat: "dd-mm-yy",
     beforeShowDay: function(date){
@@ -16,19 +18,49 @@ $(function() {
     maxDate: '+2m'
 });
 
+  function test(){
+    // alert("Success");
+    // $("#seats_left").val(22);
 
-  $('input#adults').on('keyup change', function(e){
-    recalculatePrice();
-  });
+  }        
 
-  $('input#children').on('keyup change', function(e){
-    recalculatePrice();
-  });
+    $('#booking_date').on('change', function(e){
+          var selectedDate = $(this).val(); 
 
-  function recalculatePrice() {
-    var master_price = parseFloat( $('[data-hook="booking-info"]').data('master-price') );
-    var new_price = master_price * $('input#adults').val() + master_price * $('input#children').val() * 0.55;
-    $('span.price.selling').text('$' + new_price.toFixed(2).toString() );
-  }
+          $.ajax({
+          url     : '/products/seats_left',
+          type    : 'GET',
+          data    : { 'date' : selectedDate },
+          dataType: 'script'
+      });
+
+    });
+
+    $('input#adults').on('keyup change', function(e){
+      qty_changed( this );
+    });
+
+    $('input#children').on('keyup change', function(e){
+      qty_changed( this );
+    });
+
+    function qty_changed( element ) {
+      var adults = parseInt( $('input#adults').val() );
+      var children = parseInt( $('input#children').val() );
+      var seats_left = parseInt( $('#seats_left').val() );
+      if (adults + children <= seats_left) {
+        recalculatePrice();
+        $(element).attr('origvalue',$(element).val());
+      }
+      else {
+        $(element).val( $(element).attr('origvalue') );
+      }
+    }
+
+    function recalculatePrice() {
+      var master_price = parseFloat( $('[data-hook="booking-info"]').data('master-price') );
+      var new_price = master_price * $('input#adults').val() + master_price * $('input#children').val() * 0.55;
+      $('span.price.selling').text('$' + new_price.toFixed(2).toString() );
+    }
 
 });

@@ -5,7 +5,7 @@ Spree::OrdersController.class_eval do
 
     # Todo: fix up creation of buses
     #  for now assume we have one bus with 11 seats
-    bus = Bus.find(1)
+    bus = Bus.find(params[:bus_id])
     populator = Spree::OrderPopulator.new(current_order(create_order_if_necessary: true), current_currency)
     if populator.populate(params[:variant_id], params[:quantity], params[:booking_date], params[:adults], params[:children], params[:under4], bus )
 
@@ -19,4 +19,6 @@ Spree::OrdersController.class_eval do
       redirect_to :back
     end
   end
+
+
 end

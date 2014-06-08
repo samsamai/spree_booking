@@ -1,9 +1,8 @@
 Spree::Core::Engine.routes.draw do
-  # Add your extension routes here
-    # get '/admin/bookings', to: 'admin/bookings#index'
-
   namespace :admin do
     resource :bookings
   end
+
+  match '/products/seats_left',  to: 'products#seats_left',         via: 'get'
 
 end

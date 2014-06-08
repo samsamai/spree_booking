@@ -1,5 +1,5 @@
 Spree::Product.class_eval do
-  # has_many :bookings, dependent: :destroy 
+  # has_many :bus_bookings, dependent: :destroy 
 
 end
 

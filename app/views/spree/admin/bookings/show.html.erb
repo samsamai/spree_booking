@@ -7,7 +7,7 @@
     <%=h @date.strftime("%B %Y") %>
     <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m") %>
   </h2>
-<%= calendar_for(@bookings,:year => @date.year, :month => @date.month) do |t| %>
+<%= calendar_for(@line_items,:year => @date.year, :month => @date.month) do |t| %>
   <%= t.head('mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun') %>
   <%= t.day(:day_method => :booking_date) do |date, this_day_bookings| %>
     <%= date.day %><br>
@@ -32,7 +32,7 @@
 </div>
 <br>
 
-<h2>Bookings List</h2>
+<h2>Tickets Purchased</h2>
 
 <table class="table table-striped table-bordered table-condensed table-hover">
   <thead>
@@ -47,14 +47,14 @@
   </thead>
 
   <tbody>
-    <% @bookings.each do |booking| %>
-      <tr onclick="location.href='<%= edit_admin_order_path(booking.order) %>'">
-        <td><%= booking.variant.product.name %></td>
-        <td><%= booking.bus.name %></td>
-        <td><%= booking.booking_date.to_s %></td>
-        <td><%= booking.adults %></td>
-        <td><%= booking.children %></td>
-        <td><%= booking.under4 %></td>
+    <% @line_items.each do |line_item| %>
+      <tr onclick="location.href='<%= edit_admin_order_path(line_item.order) %>'">
+        <td><%= line_item.variant.product.name %></td>
+        <td><%= line_item.bus.name %></td>
+        <td><%= line_item.booking_date.to_s %></td>
+        <td><%= line_item.adults %></td>
+        <td><%= line_item.children %></td>
+        <td><%= line_item.under4 %></td>
       </tr>
     <% end %>
   </tbody>
