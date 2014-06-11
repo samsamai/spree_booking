@@ -1,5 +1,6 @@
 Spree::OrderPopulator.class_eval do
   def populate(variant_id, quantity, booking_date, adults, children, under4, bus )
+
    attempt_cart_add(variant_id, quantity, booking_date, adults, children, under4, bus)
     valid?
   end
@@ -18,7 +19,6 @@ Spree::OrderPopulator.class_eval do
       errors.add(:base, Spree.t(:please_enter_reasonable_quantity, :scope => :order_populator))
       return false
     end
-
     variant = Spree::Variant.find(variant_id)
     if quantity > 0
       line_item = @order.contents.add(variant, quantity, currency, nil, booking_date, adults, children, under4, bus )

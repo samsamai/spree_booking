@@ -1,16 +1,24 @@
 Spree::LineItem.class_eval do
   belongs_to :bus
-  
-  # attr_accessor :booking_date
+  belongs_to :bus_booking
+    
+  attr_accessor :adult, :child, :under4
   validates :booking_date, presence: { :message => "Booking date is required." }
-  validates :bus_id, presence: true
+  validates :bus_id, presence: { :message => "" }
+  # validate :booking_date_is_valid
 
-  # after_save :make_booking
 
   def amount
     a = price * adults + price * children * 0.55
   end
   
+  private
+    def booking_date_is_valid
+    Rails.logger.debug( "DEBUG: self.booking_date = '#{self.booking_date}'" )
+
+      self.errors.add :base, 'Booking date is required.' if self.booking_date.nil? 
+    end
+
 
 end
 

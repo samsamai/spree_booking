@@ -23,7 +23,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'gon'
   s.add_dependency 'watu_table_builder'
   s.add_dependency 'table_builder'
-
+  s.add_dependency 'jquery-ui-rails'
+  
   s.add_development_dependency 'capybara', '~> 2.1'
   s.add_development_dependency 'coffee-rails'
   s.add_development_dependency 'database_cleaner'

@@ -2,4 +2,17 @@
 Placeholder manifest file.
 the installer will append this file to the app vendored assets here: 'vendor/assets/stylesheets/spree/frontend/all.css'
 */
-*= require jquery.ui.datepicker
+
+
+td.align-center, td.align-center h5 {
+  text-align: center;
+}
+
+/*#test {
+  display:none;
+}
+
+#seats_left {
+  @extend span.price;
+  @extend span.price.selling;
+}*/

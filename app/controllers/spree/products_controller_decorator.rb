@@ -32,8 +32,6 @@ Spree::ProductsController.class_eval do
         return_data = {}
         buses.each do |bus|
             seats_left = bus_available?(date, bus)
-            Rails.logger.debug( "!!!!!!" )
-            Rails.logger.debug( "DEBUG: seats_left = #{seats_left}" )
 
             if seats_left
                 available_bus = { bus: bus, seats_left: seats_left}
@@ -83,12 +81,9 @@ Spree::ProductsController.class_eval do
 
     def bus_available?( date, bus )
         bus_bookings = BusBooking.where( booking_date: date, bus_id: bus.id)
-        Rails.logger.debug( "!!!!!!" )
-        Rails.logger.debug( "DEBUG: bus_bookings length = #{bus_bookings.length}" )
         if bus_bookings.length > 0
             bus_bookings.each do |bus_booking|
                 if bus_booking.seats_left > 0
-        Rails.logger.debug( "DEBUG: bus_booking.seats_left = #{bus_booking.seats_left}" )
                     return bus_booking.seats_left
                 else
                     return false

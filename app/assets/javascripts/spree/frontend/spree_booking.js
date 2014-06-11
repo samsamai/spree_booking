@@ -47,7 +47,7 @@ $(function() {
     function qty_changed( element ) {
       var adults = parseInt( $('input#adults').val() );
       var children = parseInt( $('input#children').val() );
-      var seats_left = parseInt( $('#seats_left').val() );
+      var seats_left = parseInt( $('#seats_left').text() );
       if (adults + children <= seats_left) {
         recalculatePrice();
         $(element).attr('origvalue',$(element).val());

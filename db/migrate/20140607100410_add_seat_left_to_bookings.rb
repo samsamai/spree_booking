@@ -1,5 +1,5 @@
 class AddSeatLeftToBookings < ActiveRecord::Migration
   def change
-        add_column :bookings, :seats_left, :integer
+        add_column :bookings, :child_price, :integer
   end
 end

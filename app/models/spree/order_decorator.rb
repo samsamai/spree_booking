@@ -31,6 +31,8 @@ Spree::Order.class_eval do
           # booking = Booking.new( booking_date: item.booking_date, bus_id: item.bus.id, product: item.variant.product, seats_left: item.bus.seats )
           booking = BusBooking.new( booking_date: item.booking_date, bus_id: item.bus.id, product_id: item.variant.product.id, seats_left: item.bus.seats - item.adults - item.children )
         end
+        item.bus_booking = booking
+        item.save
         booking.save
       end
 
