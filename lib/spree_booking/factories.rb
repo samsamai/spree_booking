@@ -18,8 +18,8 @@ FactoryGirl.define do
   end
   
   factory :booking_line_item, :parent => :line_item do
-    adult 1
-    child 1
+    adults 1
+    children 1
     under4 0
     booking_date Date.today
     

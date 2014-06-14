@@ -2,11 +2,9 @@ Spree::LineItem.class_eval do
   belongs_to :bus
   belongs_to :bus_booking
     
-  attr_accessor :adult, :child, :under4
   validates :booking_date, presence: { :message => "Booking date is required." }
   validates :bus_id, presence: { :message => "" }
   # validate :booking_date_is_valid
-
 
   def amount
     a = price * adults + price * children * 0.55

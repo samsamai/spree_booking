@@ -19,4 +19,7 @@ group :development, :test do
   gem 'spork', '0.9.2'
 end
 
+group :test do
+end
+
 gemspec

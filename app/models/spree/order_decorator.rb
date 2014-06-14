@@ -15,9 +15,16 @@ Spree::Order.class_eval do
   def enough_seats?
       self.line_items.each do |item|
         # assume that bus is only booked for one tour per day, so only get the first item
-        booking = BusBooking.where(booking_date: item.booking_date, bus_id: item.bus.id ).first  
+        puts "item.booking_date #{item.booking_date}"
+        puts "bus id #{item.bus.id}"
+        puts "item.product.id #{item.product.id}"
+        puts "item.adults #{item.adults}"
+        puts "item.children #{item.children}"
+        booking = BusBooking.where(booking_date: item.booking_date, bus_id: item.bus.id, product_id: item.product.id ).first  
 
         if booking
+          puts "booking.seats_left #{booking.seats_left}"
+          
           s = booking.seats_left - item.adults - item.children
           if s >= 0
             booking.seats_left = s 

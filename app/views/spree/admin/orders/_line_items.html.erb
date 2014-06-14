@@ -1,0 +1,54 @@
+<% if order.line_items.exists? %>
+  <table class="line-items index" data-hook="line-items">
+    <colgroup>
+      <col width="15%" valign="middle" halign="center">
+      <col width="40%" valign="middle">
+      <col width="20%" valign="middle" halign="center">
+      <col width="5%" valign="middle" halign="center">
+      <col width="5%" valign="middle" halign="center">
+      <col width="10%" valign="middle" halign="center">
+      <col width="5%" valign="middle" halign="center">
+
+    </colgroup>
+
+    <thead>
+      <th colspan="2"><%= Spree.t(:item) %></th>
+      <th><%= Spree.t(:booking_date) %></th>
+      <th><%= Spree.t(:adults) %></th>
+      <th><%= Spree.t(:children) %></th>
+      <th><%= Spree.t(:under4) %></th>
+      <th><%= Spree.t(:total_price) %></th>
+      <th class="orders-actions actions" data-hook="admin_order_form_line_items_header_actions">&nbsp;</th>
+    </thead>
+
+
+
+    <tbody>
+      <% order.line_items.each do |item| %>
+        
+        <tr class="line-item" id="line-item-<%= item.id %>">
+          <td class="line-item-image"><%= mini_image(item.variant) %></td>
+          <td class="line-item-name">
+            <%= item.variant.product.name %><br><%= "(" + variant_options(item.variant) + ")" unless item.variant.option_values.empty? %>
+          </td>
+          <td class="line-item-qty-edit hidden">
+            <%= number_field_tag :quantity, item.quantity, :min => 0, :class => "line_item_quantity", :size => 5 %>
+          </td>
+           <td class="line-item-booking-date align-center" ><span><%= item.booking_date %></span></td>
+          <td class="line-item-adults align-center" ><%= item.adults %></td>
+          <td class="line-item-children align-center" ><%= item.children %></td>
+          <td class="line-item-under4 align-center" ><%= item.under4 %></td>
+
+          <td class="line-item-total align-center"><%= item.display_amount.to_html %></td>
+          <td class="cart-line-item-delete actions" data-hook="cart_line_item_delete">
+            <% if can? :update, item %>
+              <%= link_to '', '#', :class => 'save-line-item fa fa-check no-text with-tip', :data => { 'line-item-id' => item.id, :action => 'save'}, :title => Spree.t('actions.save'), :style => 'display: none' %>
+              <%= link_to '', '#', :class => 'cancel-line-item fa fa-cancel no-text with-tip', :data => {:action => 'cancel'}, :title => Spree.t('actions.cancel'), :style => 'display: none' %>
+              <%= link_to '', '#', :class => 'delete-line-item fa fa-trash no-text with-tip', :data => { 'line-item-id' => item.id, :action => 'remove'}, :title => Spree.t('delete') %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

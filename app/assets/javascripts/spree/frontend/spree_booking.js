@@ -30,7 +30,7 @@ $(function() {
           $.ajax({
           url     : '/products/seats_left',
           type    : 'GET',
-          data    : { 'date' : selectedDate },
+          data    : { 'date' : selectedDate, 'product_id' : gon.product_id },
           dataType: 'script'
       });
 
