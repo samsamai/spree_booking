@@ -22,19 +22,37 @@ Spree::Product.class_eval do
   #   save
   # end
   
-  
+  # this is the original one which is checking for a specific product
   def get_disabled_dates
       disabled_dates = []
-
+  
       bus_bookings = BusBooking.all
       bus_bookings.each do |bus_booking|
           if get_available_bus( bus_booking.booking_date ) == false
               disabled_dates << bus_booking.booking_date.strftime("%d-%m-%Y")
           end
       end
-
+  
       return disabled_dates
   end
+  
+  
+  # This one blocks out date
+  # def self.get_disabled_dates_home_page
+  #     disabled_dates = []
+  # 
+  #     bus_bookings = BusBooking.all
+  #     bus_bookings.each do |bus_booking|
+  #         if any_buses_available? bus_booking.booking_date
+  #             disabled_dates << bus_booking.booking_date.strftime("%d-%m-%Y")
+  #         end
+  #     end
+  # 
+  #     return disabled_dates
+  # end
+  # 
+  # def self.any_buses_available?(date)
+  # end
 
   # def get_available_bus( date )
   #     buses = Bus.all
