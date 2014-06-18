@@ -1,5 +1,6 @@
-$("span#seats_left").text("<%= @available_bus.empty? ? 'No seats available.' : @available_bus[:seats_left ] %>");
+$("#seats_left").text("<%= @available_bus.empty? ? 'No seats available.' : @available_bus[:seats_left ] %>");
 $("#bus_id").val("<%= @available_bus.empty? ? nil : @available_bus[:bus ].id %>");
 $("#people-group").css("display", "block");
 $("#make-booking input").prop('disabled', false);
+
 

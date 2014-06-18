@@ -14,40 +14,9 @@ Spree::ProductsController.class_eval do
         # Pass combination data to js via gon
         gon.disabled_dates = disabled_dates
         gon.product_id = @product.id
+        gon.variant_id = @product.master.id
     end
 
-    def disabled_products
-      date = params[:date]
-      @disabled_products= [20]
-      
-      Spree::Product.all.each do |product|
-        if !product.get_available_bus( date )
-          @disabled_products << product.id
-        end
-      end
-
-      respond_to do |format|
-        format.js   { 
-        }
-      end
-
-    end
-
-    def disabled_dates
-      product_id = params[:product_id]
-      Rails.logger.debug( "DEBUG: product_id = '#{product_id}'" )
-      product = Spree::Product.find( product_id )
-      
-      Rails.logger.debug( "DEBUG: disabled_dates = '#{gon.disabled_dates}'" )
-      @disabled_dates = product.get_disabled_dates.to_json.html_safe
-      @variant_id = product.master.id
-      
-      respond_to do |format|
-        format.js   { 
-        }
-      end
-    end
-    
   def seats_left
     date = params[:date]
     product_id = params[:product_id]
