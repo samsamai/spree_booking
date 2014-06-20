@@ -32,7 +32,7 @@ Deface::Override.new(:virtual_path => 'spree/products/_cart_form',
       
                          $('#booking_date').on('change', function(e){
                                var selectedDate = $(this).val(); 
-                               $("#adults").val("4");
+                               $("#adults").val("1");
                                $("#children").val("0");
                                $("#under4").val("0");
 
@@ -74,20 +74,20 @@ Deface::Override.new(:virtual_path => 'spree/products/_cart_form',
 eos
 )            
 
-Deface::Override.new(:virtual_path => 'spree/products/_cart_form',
-                     :name => "add_booking_info2",
-                     :insert_top => "#product-price",
-                     :text => <<eos
-                     
-<a id='book-now' class="button btn btn-primary" href="#">Book Now</a>
-<h6><%= Spree.t(:seats_left) %>                                   
-</h6>
-  <span id="seats_left">
-    <%= @available_bus.nil? ? 'No seats available.' : @available_bus[:seats_left ] %>
-  </span>
-
-eos
-)            
+# Deface::Override.new(:virtual_path => 'spree/products/_cart_form',
+#                      :name => "add_booking_info2",
+#                      :insert_top => "#product-price",
+#                      :text => <<eos
+#
+# <a id='book-now' class="button btn btn-primary" href="#">Book Now</a>
+# <h6><%= Spree.t(:seats_left) %>
+# </h6>
+#   <span id="seats_left">
+#     <%= @available_bus.nil? ? 'No seats available.' : @available_bus[:seats_left ] %>
+#   </span>
+#
+# eos
+# )
 
 Deface::Override.new(:virtual_path => 'spree/products/_cart_form',
                      :name => "add_booking_info3",
