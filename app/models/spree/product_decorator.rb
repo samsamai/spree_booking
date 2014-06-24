@@ -99,8 +99,9 @@ Spree::Product.class_eval do
   
   
   def bus_available?( date, bus )
-    Rails.logger.info( "DEBUG: date = '#{date}'" )
-      bus_bookings = BusBooking.where( booking_date: date, bus_id: bus.id )
+    d = date.strftime('%Y-%m-%d')
+    Rails.logger.info( "DDDDEBUG: date = '#{d}'" )
+      bus_bookings = BusBooking.where( booking_date: d, bus_id: bus.id )
       if bus_bookings.length > 0
           bus_bookings.each do |bus_booking|
               if bus_booking.seats_left > 0 && bus_booking.product_id == self.id
