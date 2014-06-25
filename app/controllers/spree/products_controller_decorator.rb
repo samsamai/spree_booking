@@ -18,7 +18,7 @@ Spree::ProductsController.class_eval do
     end
 
   def seats_left
-    date = params[:date]
+    date = Date.strptime( params[:date], '%d-%m-%Y' )
     product_id = params[:product_id]
     product = Spree::Product.find( product_id )
     @available_bus = product.get_available_bus( date )
