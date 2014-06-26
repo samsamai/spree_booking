@@ -27,9 +27,9 @@ Deface::Override.new(:virtual_path => 'spree/orders/_line_item',
 eos
 )
 
-<span class="line-item-description" data-hook="line_item_description">
-  <%= line_item_description_text(line_item.description) %>
-</span>
+# <span class="line-item-description" data-hook="line_item_description">
+#   <%= line_item_description_text(line_item.description) %>
+# </span>
 
 
 Deface::Override.new(:virtual_path => 'spree/orders/_line_item',
