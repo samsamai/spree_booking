@@ -30,6 +30,20 @@ eos
 # <span class="line-item-description" data-hook="line_item_description">
 #   <%= line_item_description_text(line_item.description) %>
 # </span>
+# <td data-hook="order_item_description">
+#   <h4><%= item.variant.product.name %></h4>
+#   <%= truncated_product_description(item.variant.product) %>
+#   <%= "(" + item.variant.options_text + ")" unless item.variant.option_values.empty? %>
+# </td>
+
+Deface::Override.new(:virtual_path => 'spree/shared/_order_details',
+                     :name => "change_line_item_data_display3",
+                     :replace_contents => "[data-hook='order_item_description']",
+                     :text => <<eos
+                     <h4><%= item.variant.product.name %></h4>
+eos
+)
+
 
 
 Deface::Override.new(:virtual_path => 'spree/orders/_line_item',
