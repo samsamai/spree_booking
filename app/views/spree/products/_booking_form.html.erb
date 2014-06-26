@@ -1,29 +1,51 @@
-
 <div id="booking_form">
 <h2>Make a booking now</h2>
-<p><strong>It’s as easy as 1.2.3</strong></p>
 <%= simple_form_for :order, :url => populate_orders_path do |f| %>
+<table id="booking-table" class="table col-md-12">
 
-<div><%= f.label "1." %> <%= text_field_tag :booking_date, nil, readonly: true, :value=>"",:placeholder => "CHOOSE A DATE:" %></div>
+<tr>  
+<td class="col-md-2"><%= f.label "1." %></td> 
+<td class="col-md-9"><%= text_field_tag :booking_date, nil, readonly: true, :value=>"",:placeholder => "CHOOSE A DATE:" %></td> 
+</tr>
 
-    <div><label id="people-label">2.</label><%= text_field_tag "people", nil, :placeholder => "HOW MANY PEOPLE?:", readonly: true %></div>
+<tr>  
+<td class="col-md-2"><label id="people-label">2.</label></td> 
+<td class="col-md-9"><%= text_field_tag "people", nil, :placeholder => "HOW MANY PEOPLE?", readonly: true %></td> 
+</tr>
+
+<tr>  
+<td class="col-md-2"></td> 
+<td class="col-md-9">
   <div id="people-group" style="display:none">
     <div id="seats_left-group">
-    Seats left: 
-  <span id="seats_left">
-    <%= @available_bus.nil? ? 'No seats available.' : @available_bus[:seats_left ] %>
-  </span><br>
-</div>
+      Seats left: 
+      <span id="seats_left">
+        <%= @available_bus.nil? ? 'No seats available.' : @available_bus[:seats_left ] %>
+      </span><br>
+    </div>
 
-<div class="people-row"><%= f.label :adults %> <%= number_field_tag :adults, 1, min: 1, origvalue: 1  %></div>                 
-<div class="people-row"><%= f.label :children %> <%= number_field_tag :children, 0, min: 0, origvalue: 0   %></div>
-<div class="people-row"><%= f.label :under_4 %> <%= number_field_tag :under4, 0, min: 0, origvalue: 0   %></div></div>
+    <div class="people-row"><%= f.label :adults %> <%= number_field_tag :adults, 1, min: 1, origvalue: 1  %></div>                 
+    <div class="people-row"><%= f.label :children %> <%= number_field_tag :children, 0, min: 0, origvalue: 0   %></div>
+    <div class="people-row"><%= f.label :under_4 %> <%= number_field_tag :under4, 0, min: 0, origvalue: 0   %></div>
+  </div>
+</td> 
+</tr>
+
+<tr>  
+<td class="col-md-2"></td> 
+<td class="col-md-9">
+    <div id="make-booking">
+      <%= f.button :submit, 'Make the Booking', :class=> "btn btn-primary" %>
+    </div>
+</td> 
+</tr>
+
+</table>
+
+
 <%= hidden_field_tag :bus_id %>
 <%= hidden_field_tag "variant_id", 15 %>
 <%= hidden_field_tag :quantity, 1 %>
 
-    <div id="make-booking">
-      <%= f.button :submit, 'Make the Booking', :class=> "btn btn-primary" %>
-    </div>
   <% end %>
 </div>
