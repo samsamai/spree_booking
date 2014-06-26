@@ -72,8 +72,6 @@ Deface::Override.new(:virtual_path => 'spree/shared/_order_details',
        </td>
        <td data-hook="order_item_description">
          <h4><%= item.variant.product.name %></h4>
-         <%= truncated_product_description(item.variant.product) %>
-         <%= "(" + item.variant.options_text + ")" unless item.variant.option_values.empty? %>
        </td>
        <td data-hook="order_item_booking_date"><span><%= item.booking_date %></span></td>
       <td data-hook="order_item_adults"><%= item.adults %></td>
