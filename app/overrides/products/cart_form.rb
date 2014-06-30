@@ -53,7 +53,7 @@ Deface::Override.new(:virtual_path => 'spree/products/_cart_form',
                            qty_changed( this );
                          });
                          
-                         $("#product-details #booking_date").datepicker({
+                         $("#booking_date").datepicker({
                            dateFormat: "dd-mm-yy",
                            beforeShowDay: function(date){
                                var string = jQuery.datepicker.formatDate('dd-mm-yy', date);
