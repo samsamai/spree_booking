@@ -4,19 +4,14 @@
 <table id="booking-table" class="table col-md-12">
 
 <tr>  
-<td class="col-md-2"><%= f.label "1." %></td> 
+<td class="col-md-2"><%= f.label "" %></td> 
 <td class="col-md-9"><%= text_field_tag :booking_date, nil, readonly: true, :value=>"",:placeholder => "CHOOSE A DATE:" %></td> 
-</tr>
-
-<tr>  
-<td class="col-md-2"><label id="people-label">2.</label></td> 
-<td class="col-md-9"><%= text_field_tag "people", nil, :placeholder => "HOW MANY PEOPLE?", readonly: true %></td> 
 </tr>
 
 <tr>  
 <td class="col-md-2"></td> 
 <td class="col-md-9">
-  <div id="people-group" style="display:none">
+  <div id="people-group">
     <div id="seats_left-group">
       Seats left: 
       <span id="seats_left">

@@ -7,6 +7,7 @@ Spree::LineItem.class_eval do
   # validate :booking_date_is_valid
 
   def amount
+    Rails.logger.debug( "DEBUG: product.price = '#{product.price}'" )
     Rails.logger.debug( "DEBUG: product.child_price = '#{product.child_price}'" )
     a = price * adults + product.child_price * children 
   end
