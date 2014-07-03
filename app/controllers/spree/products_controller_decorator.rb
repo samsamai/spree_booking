@@ -2,6 +2,7 @@ Spree::ProductsController.class_eval do
     # before_filter :load_product, :only => :seats_left
     
     def show
+        @params = params.slice(:book_now)
         return unless @product
 
         @variants = @product.variants_including_master.active(current_currency).includes([:option_values, :images])
@@ -15,6 +16,7 @@ Spree::ProductsController.class_eval do
         gon.disabled_dates = disabled_dates
         gon.product_id = @product.id
         gon.variant_id = @product.master.id
+        gon.book_now = params[:book_now]
     end
 
   def seats_left

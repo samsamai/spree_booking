@@ -5,7 +5,10 @@ Deface::Override.new(:virtual_path => 'spree/products/_cart_form',
                      <script>
                      $(document).ready(function(){
 
-
+                       if ( gon.book_now == "true") {
+                         open_booking_modal();
+                       }
+                       
                        function qty_changed( element ) {
                          var adults = parseInt( $('input#adults').val() );
                          var children = parseInt( $('input#children').val() );
@@ -24,10 +27,8 @@ Deface::Override.new(:virtual_path => 'spree/products/_cart_form',
                          var new_price = master_price * $('input#adults').val() + master_price * $('input#children').val() * 0.55;
                          $('span.lead.price').text('$' + new_price.toFixed(2).toString() );
                        }
-
-                       $('a#book-now').click(function(e){
-                         e.preventDefault()
-    
+                       
+                       function open_booking_modal() {
                          $.lazybox("<%= j(render partial: 'booking_form') %>", { opacity: 0.7, speed: 500 });
       
                          $('#booking_date').on('change', function(e){
@@ -67,7 +68,11 @@ Deface::Override.new(:virtual_path => 'spree/products/_cart_form',
                          });
                          $("input#variant_id").val( gon.variant_id );
                          $("#make-booking input").prop('disabled', true);
-      
+                       }
+
+                       $('a#book-now').click(function(e){
+                         e.preventDefault();
+                         open_booking_modal();
                        })
                      })
                      </script>
