@@ -7,7 +7,7 @@
     <%=h @date.strftime("%B %Y") %>
     <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m") %>
   </h2>
-<%= calendar_for(@line_items,:year => @date.year, :month => @date.month) do |t| %>
+<%= calendar_for(@bus_bookings,:year => @date.year, :month => @date.month) do |t| %>
   <%= t.head('mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun') %>
   <%= t.day(:day_method => :booking_date) do |date, this_day_bookings| %>
     <%= date.day %><br>
@@ -16,8 +16,8 @@
       <% seats_left = bus.seats %>
       <% this_day_bookings.each do |booking| %>
         <% if booking.bus == bus %>
-          <% tour_name = booking.variant.product.name %>
-          <% seats_left = seats_left - booking.adults - booking.children %>
+          <% tour_name = booking.product.name %>
+          <% seats_left = booking.seats_left %>
         <% end %>
       <% end %>
       <% if tour_name != '' %>
@@ -49,7 +49,7 @@
   <tbody>
     <% @line_items.each do |line_item| %>
       <tr onclick="location.href='<%= edit_admin_order_path(line_item.order) %>'">
-        <td><%= line_item.variant.product.name %></td>
+        <td><%= line_item.product.name %></td>
         <td><%= line_item.bus.name %></td>
         <td><%= line_item.booking_date.to_s %></td>
         <td><%= line_item.adults %></td>

@@ -1,5 +1,6 @@
 Spree::Product.class_eval do
-  # has_many :bus_bookings, dependent: :destroy 
+  # has_many :bus_bookings, dependent: :destroy
+  has_many :bus_bookings,  class_name: "::BusBooking"
   validates :child_price, presence: true
   # delegate_belongs_to :child_price
   # 

@@ -1,8 +1,8 @@
     class BusBooking < ActiveRecord::Base
       belongs_to :bus
-      belongs_to :product
+      belongs_to :product,  class_name: "Spree::Product"
 
-      has_many :line_items
+      has_many :line_items,  class_name: "Spree::LineItem"
 
       # attr_accessor :seats_left
 
