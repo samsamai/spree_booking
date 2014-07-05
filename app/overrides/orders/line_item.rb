@@ -6,13 +6,13 @@ Deface::Override.new(:virtual_path => 'spree/orders/_line_item',
                        <td class="cart-item-booking-date align-center" data-hook="cart_item_booking_date">
                          <%= item_form.label :booking_date, line_item.booking_date.to_s %>
                        </td>
-                       <td class="cart-item-adults align-center" data-hook="cart_item_adults" >
+                       <td class="cart-item-adults align-center hidden-xs" data-hook="cart_item_adults" >
                          <%= line_item.adults.to_s %>
                        </td>
-                       <td class="cart-item-children align-center" ata-hook="cart_item_children" >
+                       <td class="cart-item-children align-center hidden-xs" ata-hook="cart_item_children" >
                          <%= line_item.children.to_s %>
                        </td>
-                       <td class="cart-item-under4 align-center" data-hook="under4" >
+                       <td class="cart-item-under4 align-center hidden-xs" data-hook="under4" >
                          <%= line_item.under4.to_s %>
                        </td>
                        <td class="cart-item-total align-center" data-hook="cart_item_total">

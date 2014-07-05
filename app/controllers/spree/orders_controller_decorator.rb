@@ -1,8 +1,8 @@
 Spree::OrdersController.class_eval do
   # Adds a new item to the order (creating a new order if none already exists)
   def populate
-    Rails.logger.debug( "!!!!!!" )
-    Rails.logger.debug( "DEBUG: params[:bus_id] = #{params[:bus_id]}" )
+    # Rails.logger.debug( "!!!!!!" )
+    # Rails.logger.debug( "DEBUG: params[:bus_id] = #{params[:bus_id]}" )
     
     bus = params[:bus_id].empty? ? nil : Bus.find(params[:bus_id])
     

@@ -53,9 +53,9 @@ Deface::Override.new(:virtual_path => 'spree/shared/_order_details',
     <tr data-hook="order_details_line_items_headers">
       <th colspan="2"><%= Spree.t(:item) %></th>
       <th><%= Spree.t(:booking_date) %></th>
-      <th><%= Spree.t(:adults) %></th>
-      <th><%= Spree.t(:children) %></th>
-      <th><%= Spree.t(:under4) %></th>
+      <th class="hidden-xs">Adults</th>
+      <th class="hidden-xs">Children</th>
+      <th class="hidden-xs">Under 4s</th>
       <th class="total"><span><%= Spree.t(:total) %></span></th>
     </tr>
   </thead>
@@ -74,23 +74,33 @@ Deface::Override.new(:virtual_path => 'spree/shared/_order_details',
          <h4><%= item.variant.product.name %></h4>
        </td>
        <td data-hook="order_item_booking_date"><span><%= item.booking_date %></span></td>
-      <td data-hook="order_item_adults"><%= item.adults %></td>
-      <td data-hook="order_item_children"><%= item.children %></td>
-      <td data-hook="order_item_under4"><%= item.under4 %></td>
+      <td class="hidden-xs" data-hook="order_item_adults"><%= item.adults %></td>
+      <td class="hidden-xs" data-hook="order_item_children"><%= item.children %></td>
+      <td class="hidden-xs" data-hook="order_item_under4"><%= item.under4 %></td>
        <td data-hook="order_item_total" class="total"><span><%= item.display_amount.to_html %></span></td>
       </tr>
     <% end %>
   </tbody>
   <tfoot id="order-total" data-hook="order_details_total">
     <tr class="total">
-      <td colspan="6"><b><%= Spree.t(:order_total) %>:</b></td>
+      <td></td>
+      <td></td>
+      <td class="hidden-xs"></td>
+      <td class="hidden-xs"></td>
+      <td class="hidden-xs"></td>
+      <td ><b><%= Spree.t(:order_total) %>:</b></td>
       <td class="total"><span id="order_total"><%= @order.display_total.to_html %></span></td>
     </tr>
   </tfoot>
 
   <tfoot id="subtotal" data-hook="order_details_subtotal">
     <tr class="total" id="subtotal-row">
-      <td colspan="6"><b><%= Spree.t(:subtotal) %>:</b></td>
+    <td></td>
+    <td></td>
+    <td class="hidden-xs"></td>
+    <td class="hidden-xs"></td>
+    <td class="hidden-xs"></td>
+      <td ><b><%= Spree.t(:subtotal) %>:</b></td>
       <td class="total"><span><%= @order.display_item_total.to_html %></span></td>
     </tr>
   </tfoot>
@@ -132,8 +142,13 @@ Deface::Override.new(:virtual_path => 'spree/shared/_order_details',
     <% @order.adjustments.eligible.each do |adjustment| %>
     <% next if (adjustment.source_type == 'Spree::TaxRate') and (adjustment.amount == 0) %>
       <tr class="total">
-        <td colspan="6"><strong><%= adjustment.label %></strong></td>
-        <td class="total"><span><%= adjustment.display_amount.to_html %></span></td>
+      <td></td>
+      <td></td>
+      <td class="hidden-xs"></td>
+      <td class="hidden-xs"></td>
+      <td class="hidden-xs"></td>
+        <td><strong><%= adjustment.label %></strong></td>
+        <td class="total"><span><%= adjustment.display_amount.to_html %>test</span></td>
       </tr>
     <% end %>
   </tfoot>
