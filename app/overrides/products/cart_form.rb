@@ -64,7 +64,7 @@ Deface::Override.new(:virtual_path => 'spree/products/_cart_form',
                            changeMonth: true,
                            numberOfMonths: 1,
                            minDate:'0',
-                           maxDate: '+2m'
+                           maxDate: '+6m'
                          });
                          $("input#variant_id").val( gon.variant_id );
                          $("#make-booking input").prop('disabled', true);
