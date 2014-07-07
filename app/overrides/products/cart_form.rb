@@ -63,7 +63,7 @@ Deface::Override.new(:virtual_path => 'spree/products/_cart_form',
                            defaultDate: "+1w",
                            changeMonth: true,
                            numberOfMonths: 1,
-                           minDate:'0',
+                           minDate:0,
                            maxDate: '+6m'
                          });
                          $("input#variant_id").val( gon.variant_id );
