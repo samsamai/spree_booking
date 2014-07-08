@@ -10,3 +10,14 @@ Deface::Override.new(:virtual_path => "spree/admin/products/_form",
 eos
 )            
 
+Deface::Override.new(:virtual_path => "spree/admin/products/_form",
+                     :name => "admin_products_form_add_short_description",
+                     :insert_bottom => "[data-hook='admin_product_form_additional_fields']",
+                     :text => <<eos
+                     <%= f.field_container :short_description do %>
+                       <%= f.label :short_description, 'Short description' %>
+                       <%= f.text_area :short_description, {:rows => '13', :class => 'fullwidth'} %>
+                       <%= f.error_message_on :short_description %>
+                     <% end %>
+eos
+)            
