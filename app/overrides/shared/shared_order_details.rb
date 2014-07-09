@@ -71,7 +71,7 @@ Deface::Override.new(:virtual_path => 'spree/shared/_order_details',
          <% end %>
        </td>
        <td data-hook="order_item_description">
-         <h4><%= item.variant.product.name %></h4>
+         <h4><%= item.variant.product.name %></h4><br><p><strong>Pickup Address: </strong><%= item.variant.product.pickup_address %></p>
        </td>
        <td data-hook="order_item_booking_date"><span><%= item.booking_date %></span></td>
       <td class="hidden-xs" data-hook="order_item_adults"><%= item.adults %></td>
