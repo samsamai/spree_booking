@@ -33,7 +33,7 @@ describe Spree::LineItem  do
       @li = create( :line_item, variant: variant, booking_date: Date.today, adults: 1, children: 1, under4: 0,
       bus: bus )
 
-       expected = @li.price + @li.price * 0.55
+       expected = @li.price + @li.product.child_price
        result = @li.amount
      
        result.to_f.should eq expected 

@@ -15,16 +15,9 @@ Spree::Order.class_eval do
   def enough_seats?
       self.line_items.each do |item|
         # assume that bus is only booked for one tour per day, so only get the first item
-        puts "item.booking_date #{item.booking_date}"
-        puts "bus id #{item.bus.id}"
-        puts "item.product.id #{item.product.id}"
-        puts "item.adults #{item.adults}"
-        puts "item.children #{item.children}"
         booking = BusBooking.where(booking_date: item.booking_date, bus_id: item.bus.id, product_id: item.product.id ).first  
 
         if booking
-          puts "booking.seats_left #{booking.seats_left}"
-          
           s = booking.seats_left - item.adults - item.children
           if s >= 0
             booking.seats_left = s 
@@ -35,9 +28,17 @@ Spree::Order.class_eval do
           end
 
         else
-          # booking = Booking.new( booking_date: item.booking_date, bus_id: item.bus.id, product: item.variant.product, seats_left: item.bus.seats )
-          booking = BusBooking.new( booking_date: item.booking_date, bus_id: item.bus.id, product_id: item.variant.product.id, seats_left: item.bus.seats - item.adults - item.children )
+          # does this bus have a booking for this day for any other products?
+          b = BusBooking.where(booking_date: item.booking_date, bus_id: item.bus.id).first
+          
+          if b == nil
+            # booking = Booking.new( booking_date: item.booking_date, bus_id: item.bus.id, product: item.variant.product, seats_left: item.bus.seats )
+            booking = BusBooking.new( booking_date: item.booking_date, bus_id: item.bus.id, product_id: item.variant.product.id, seats_left: item.bus.seats - item.adults - item.children )
+          else
+            return
+          end
         end
+        
         item.bus_booking = booking
         item.save
         booking.save
