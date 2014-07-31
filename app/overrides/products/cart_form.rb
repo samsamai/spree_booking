@@ -15,13 +15,7 @@ Deface::Override.new(:virtual_path => 'spree/products/_cart_form',
                          return true;
                        }
                      }
-                     $(document).ready(function(){
-                       
-
-                       if ( gon.book_now == "true") {
-                         open_booking_modal();
-                       }
-                       
+                     $(window).load(function(){
                        function qty_changed( element ) {
                          var adults = parseInt( $('input#adults').val() );
                          var children = parseInt( $('input#children').val() );
@@ -41,7 +35,7 @@ Deface::Override.new(:virtual_path => 'spree/products/_cart_form',
                          $('span.lead.price').text('$' + new_price.toFixed(2).toString() );
                        }
                        
-                       function open_booking_modal() {
+                       function open_booking_modal_ss() {
                          $.lazybox("<%= j(render partial: 'booking_form') %>", { opacity: 0.7, speed: 500 });
                          $.lazybox.close = function() {
                            $('body[data-hook="body"]').css('overflow', 'auto');
@@ -100,20 +94,24 @@ Deface::Override.new(:virtual_path => 'spree/products/_cart_form',
                          $("input#variant_id").val( gon.variant_id );
                          $("#make-booking input").prop('disabled', true);
                        }
-                       
+                       if ( gon.book_now == "true") {
+                         
+                         setTimeout(function() {open_booking_modal_ss();},1250);
+                         
+                       }
+                                         
                        $('a#lazy_close').bind( "touchstart", function(e){
                          e.preventDefault();
                          $.lazybox.close();
                          });
                        
-                       
                        $('a#book-now').bind( "touchstart", function(e){
                          e.preventDefault();
-                         open_booking_modal();
+                         open_booking_modal_ss();
                          });
                        $('a#book-now').click(function(e){
                          e.preventDefault();
-                         open_booking_modal();
+                         open_booking_modal_ss();
                        });
                      })
                      </script>

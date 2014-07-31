@@ -28,10 +28,11 @@ eos
 )
 
 
-# Deface::Override.new(:virtual_path => 'spree/orders/_line_item',
-#                      :name => "change_line_item_data_display2",
-#                      :replace_contents => "[data-hook='line_item_description']",
-#                      :text => <<eos
-#                      <%= line_item_description_text(line_item.name) %>
-# eos
-# )
+Deface::Override.new(:virtual_path => 'spree/orders/_line_item',
+                     :name => "change_line_item_data_display2",
+                     :replace_contents => "[data-hook='line_item_description']",
+                     :text => <<eos
+                     <% doc = Nokogiri::HTML(line_item.product.description) %>
+                     <%= raw truncate((doc.text), :length => 100)  %>
+eos
+)
