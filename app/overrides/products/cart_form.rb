@@ -3,7 +3,20 @@ Deface::Override.new(:virtual_path => 'spree/products/_cart_form',
                      :insert_top => "[data-hook='inside_product_cart_form']",
                      :text => <<eos
                      <script>
+                     function validate_booking_form(){
+                       var adults = parseInt( $('input#adults').val() );
+                       var children = parseInt( $('input#children').val() );
+                       var seats_left = parseInt( $('#seats_left').text() );
+                       if (adults + children > seats_left) {
+                         alert('There are only ' + seats_left + " seats available." );
+                         return false;
+                       }
+                       else {
+                         return true;
+                       }
+                     }
                      $(document).ready(function(){
+                       
 
                        if ( gon.book_now == "true") {
                          open_booking_modal();
@@ -30,7 +43,25 @@ Deface::Override.new(:virtual_path => 'spree/products/_cart_form',
                        
                        function open_booking_modal() {
                          $.lazybox("<%= j(render partial: 'booking_form') %>", { opacity: 0.7, speed: 500 });
-      
+                         $.lazybox.close = function() {
+                           $('body[data-hook="body"]').css('overflow', 'auto');
+                           var overlay = $('#lazy_overlay');
+                           overlay.css('overflow', 'hidden');
+                           return overlay.removeClass('visible');
+                         };
+
+                         $('body[data-hook="body"]').css('overflow', 'hidden');
+                         var overlay = $('#lazy_overlay');
+                         var lazybox = $('#lazybox');
+                         overlay.css('overflow', 'scroll');
+                         lazybox.css('margin-top', 'auto');
+                         lazybox.css('margin-bottom', 'auto');
+                         
+                         $("#adults").prop('disabled', true);
+                         $("#children").prop('disabled', true);
+                         $("#under4").prop('disabled', true);
+                         
+    
                          $('#booking_date').on('change', function(e){
                                var selectedDate = $(this).val(); 
                                $("#adults").val("1");
@@ -47,11 +78,11 @@ Deface::Override.new(:virtual_path => 'spree/products/_cart_form',
                          });
                          
                          $('input#adults').on('keyup change', function(e){
-                           qty_changed( this );
+                           // qty_changed( this );
                          });
 
                          $('input#children').on('keyup change', function(e){
-                           qty_changed( this );
+                           // qty_changed( this );
                          });
                          
                          $("#booking_date").datepicker({
@@ -69,11 +100,21 @@ Deface::Override.new(:virtual_path => 'spree/products/_cart_form',
                          $("input#variant_id").val( gon.variant_id );
                          $("#make-booking input").prop('disabled', true);
                        }
-
+                       
+                       $('a#lazy_close').bind( "touchstart", function(e){
+                         e.preventDefault();
+                         $.lazybox.close();
+                         });
+                       
+                       
+                       $('a#book-now').bind( "touchstart", function(e){
+                         e.preventDefault();
+                         open_booking_modal();
+                         });
                        $('a#book-now').click(function(e){
                          e.preventDefault();
                          open_booking_modal();
-                       })
+                       });
                      })
                      </script>
 eos

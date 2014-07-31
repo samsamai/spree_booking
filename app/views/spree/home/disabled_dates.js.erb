@@ -1,5 +1,7 @@
 var disabled_dates = <%= raw @disabled_dates %>;
 
+$("#booking_date").prop('disabled', false);
+
 $("#booking_date").datepicker({
   dateFormat: "dd-mm-yy",
   beforeShowDay: function(date){

@@ -1,6 +1,6 @@
 <div id="booking_form">
 <h2>Make a booking now</h2>
-<%= simple_form_for :order, :url => populate_orders_path do |f| %>
+<%= simple_form_for :order, :url => populate_orders_path,:html => { :onSubmit => 'return validate_booking_form();' } do |f| %>
 <table id="booking-table" class="table col-md-12">
 
 <tr>  
